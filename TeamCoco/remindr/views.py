@@ -9,7 +9,7 @@ from django.template import RequestContext, loader
 from django.core.urlresolvers import reverse
 import django
 
-from forms import SeniorForm
+from forms import SeniorForm, MedicationForm, AppointmentForm
 
 from remindr.models import Senior, Appointment, Medication
 
@@ -24,10 +24,13 @@ def senior(request, senior_id=None):
 
     if request.method == 'GET':
         senior = get_object_or_404(Senior, pk=senior_id)
-        form = SeniorForm()
-        return render(request, 'appointments.html', {'form': form,
+        medicationForm = MedicationForm()
+        appointmentForm = AppointmentForm()
+        return render(request, 'remindr/senior.html', {'medicationForm': medicationForm,
+                                                       'appointmentForm' : appointmentForm,
                                                      'senior': senior,
-                                                     'appointments_lst': senior.appointment_set.all()})
+                                                     'appointments_lst': senior.appointment_set.all(),
+                                                     'medication_lst': senior.medication_set.all()})
     else:
         pass
         #delete
@@ -44,6 +47,21 @@ def add_senior(request):
             senior.save()
             return HttpResponseRedirect('/remindr/')
 
+def add_medication(request, senior_id = None):
+    if request.method == 'POST':
+        #senior_id = request.POST['senior_id']
+        senior = get_object_or_404(Senior, pk=senior_id)
+        form = MedicationForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            dosage_amount = form.cleaned_data['dosage_amount']
+            dosage_unit = form.cleaned_data['dosage_unit']
+            medication = Medication(name=name, dosage_amount=dosage_amount, dosage_unit=dosage_unit, senior=senior)
+            medication.save()
+    return HttpResponseRedirect('/remindr/')
+
+def add_appointment(request, senior_id=None):
+    return HttpResponseRedirect('/remindr/')
 
 # def senior_delete(request, senior_id):
 #     pass
@@ -56,7 +74,9 @@ def completed(request):
     sent = send_twilio_message('6473399467', 'ayyy')
     return HttpResponse("status " + sent.status)
 
+def appointment(request, appointment_id=None):
 
+    return HttpResponse("appointment page")
 
 
 

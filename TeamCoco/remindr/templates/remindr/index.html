@@ -3,7 +3,7 @@
 {% if senior_lst %}
     <ul>
     {% for senior in senior_lst %}
-        <li><a href="{% url 'remindr:appointments' senior.id %}">{{ senior.name }}</a></li>    {% endfor %}
+        <li><a href="{% url 'remindr:senior' senior.id %}">{{ senior.name }}</a></li>    {% endfor %}
     </ul>
 {% else %}
     <p>No seniors available.</p>
@@ -16,5 +16,6 @@
 <form action="{% url 'remindr:add_senior' %}" method="post">
 {% csrf_token %}
 {{ form }}
+<input id="id_senior_id" name="senior_id" type="hidden" value={{ senior.id }} />
 <input type="submit" value="Submit" />
 </form>

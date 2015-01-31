@@ -1,0 +1,45 @@
+<h1>Appointments</h1>
+{% if appointments_lst %}
+    <ul>
+    {% for appointment in appointments_lst %}
+        <li><a href="{% url 'remindr:appointment' senior.id appointment.id %}">{{ appointment.time_to_take }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No appointments available.</p>
+{% endif %}
+
+<h1>Medication</h1>
+{% if medication_lst %}
+    <ul>
+    {% for medication in medication_lst %}
+        <li><div>{{ medication.name }}</div></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No medications available</p>
+{% endif %}
+
+<h1>Add Appointment</h1>
+<form action="{% url 'remindr:add_appointment' senior.id %}" method="post">
+{% csrf_token %}
+{{ appointmentForm }}
+<input type="submit" value="Submit" />
+</form>
+
+<h1>Add Medication</h1>
+<form action="{% url 'remindr:add_medication' senior.id %}" method="post">
+{% csrf_token %}
+{{ medicationForm }}
+<input type="submit" value="Submit" />
+</form>
+
+{#<h1>Add a new </h1>#}
+{##}
+{#{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}#}
+{##}
+{#<form action="{% url 'remindr:senior' %}" method="post">#}
+{#{% csrf_token %}#}
+{#{{ form }}#}
+{#<input type="submit" value="Submit" />#}
+{#</form>#}

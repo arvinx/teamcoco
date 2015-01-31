@@ -12,10 +12,6 @@ class Appointment(models.Model):
     message = models.CharField(max_length=500)
     senior = models.ForeignKey(Senior, null=True)
 
-
-class Medication(models.Model):
-    name = models.CharField(max_length=40)
-    dosage = models.IntegerField(default=0)
     # when the repeat starts
     start_time = models.DateTimeField(auto_now=True)
     # when the repeat ends? can it be null?
@@ -23,5 +19,19 @@ class Medication(models.Model):
     frequency = models.IntegerField(default=0)
     #freq evenly spread out on freq_unit
     frequency_unit = models.CharField(default="hour", max_length=10)
+
+
+class Medication(models.Model):
+    name = models.CharField(max_length=40)
+    dosage_amount = models.IntegerField(default=0)
+    dosage_unit = models.CharField(max_length=10)
+    senior = models.ForeignKey(Senior, null=True)
+
+    def __str__(self):
+        return self.name
+
+class Dosage(models.Model):
     appointment = models.ForeignKey(Appointment)
+    medication = models.ForeignKey(Medication)
+
 
