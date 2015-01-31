@@ -1,0 +1,20 @@
+
+
+{% if senior_lst %}
+    <ul>
+    {% for senior in senior_lst %}
+        <li><a href="{% url 'remindr:appointments' senior.id %}">{{ senior.name }}</a></li>    {% endfor %}
+    </ul>
+{% else %}
+    <p>No seniors available.</p>
+{% endif %}
+
+<h1>Add a new senior</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'remindr:add_senior' %}" method="post">
+{% csrf_token %}
+{{ form }}
+<input type="submit" value="Submit" />
+</form>
