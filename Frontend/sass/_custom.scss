@@ -1,1 +1,10 @@
 // Your custom SCSS should be written here...
+
+body {
+	height:80%;
+	width: 10%;
+	margin-bottom: 40px;
+	&.test {
+		width:80%;
+	}
+}
