@@ -1,3 +1,4 @@
+import os
 # Django settings for TeamCoco project.
 
 DEBUG = True
@@ -9,10 +10,12 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '',                      # Or path to database file if using sqlite3.
+        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
@@ -122,8 +125,14 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'remindr',
+    'django_twilio',
 )
 
+# twilio credentials
+TWILIO_ACCOUNT_SID = 'ACcf88f961aaf057563df8b9c319574f14'
+TWILIO_AUTH_TOKEN = 'ed5e57bb21d95457794e24cbfd49543c'
+TWILIO_PHONE_NUMBER = '6476910614'
+#TWILIO_DEFAULT_CALLERID = 'TEAM_COCO'
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
 
 # A sample logging configuration. The only tangible logging

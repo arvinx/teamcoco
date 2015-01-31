@@ -1,0 +1,10 @@
+<h1>Add a new senior</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'remindr:senior_add' %}" method="post">
+{% csrf_token %}
+
+
+<input type="submit" value="Submit" />
+</form>
