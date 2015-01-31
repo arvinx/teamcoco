@@ -14,10 +14,11 @@ class MedicationForm(forms.Form):
 
 class AppointmentForm(forms.Form):
     time_to_take = forms.TimeField()
-    message = forms.Textarea()
+    message = forms.CharField()
 
     medications = forms.ModelMultipleChoiceField(queryset=Medication.objects.all())
-    start_time = forms.DateTimeField(label='start_time')
-    end_time = forms.DateTimeField(label='end_time')
-    frequency = forms.IntegerField(label='frequency')
-    frequency_unit = forms.CharField(label='frequency_unit')
+    recurring = forms.BooleanField()
+    start_date = forms.DateField()
+    end_date = forms.DateField()
+    FREQUENCY_CHOICES = (('Daily', 'Daily'), ('Hourly', 'Hourly'),)
+    frequency_unit = forms.ChoiceField(choices=FREQUENCY_CHOICES)
