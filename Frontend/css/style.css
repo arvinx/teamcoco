@@ -95,6 +95,14 @@ body .row {
 	background-color: #F00;
 }
 
+.profilePanel{
+	display: none;
+}
+
+.profilePanel.active {
+	display: block;
+}
+
 /* Responsive */
 @media screen and (max-width:768px) {
 	#contactMenu {

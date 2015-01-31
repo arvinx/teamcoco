@@ -116,12 +116,29 @@
 					<div id="profileNavbar">
 						<div class="row navbar" id="profileNav">
 							<ul class="twelve columns">
-								<li><a href="#">Info</a></li>
-								<li><a href="#">History</a></li>
-								<li><a href="#">Appointments</a></li>
-								<li><a href="#">Medication</a></li>
-								<li><a href="#">Notes</a></li>
+								<li><a href="#" class="trigger" gumby-trigger="#profileInfo">Info</a></li>
+								<li><a href="#profileHistory">History</a></li>
+								<li><a href="#profileAppt">Appointments</a></li>
+								<li><a href="#profileMeds">Medication</a></li>
+								<li><a href="#profileNotes">Notes</a></li>
 							</ul>
+						</div>
+					</div>
+					<div id="profileContent">
+						<div class="profilePanel active" id="profileInfo">
+							Info
+						</div>
+						<div class="profilePanel" id="profileHistory">
+							History
+						</div>
+						<div class="profilePanel" id="profileAppt">
+							Appointment
+						</div>
+						<div class="profilePanel" id="profileMeds">
+							Medication
+						</div>
+						<div class="profilePanel" id="profileNotes">
+							Notes
 						</div>
 					</div>
 				</div>
