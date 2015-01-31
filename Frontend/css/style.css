@@ -103,6 +103,14 @@ body .row {
 	display: block;
 }
 
+.gumby-no-touch .navbar ul li.active > a {
+	background: #868d92;
+}
+
+.navbar ul li > a.toggle {
+	display: block !important;
+}
+
 /* Responsive */
 @media screen and (max-width:768px) {
 	#contactMenu {
