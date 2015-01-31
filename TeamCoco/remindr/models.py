@@ -7,18 +7,21 @@ class Senior(models.Model):
 
 
 class Appointment(models.Model):
-    time_added = models.DateTimeField('date added')
-    time_to_take = models.DateTimeField('date to take medication')
     message = models.CharField(max_length=500)
     senior = models.ForeignKey(Senior, null=True)
 
     # when the repeat starts
-    start_time = models.DateTimeField(auto_now=True)
+    start_date = models.DateField(auto_now=True)
     # when the repeat ends? can it be null?
-    end_time = models.DateTimeField(auto_now=False)
-    frequency = models.IntegerField(default=0)
+    end_date = models.DateField(auto_now=False)
     #freq evenly spread out on freq_unit
     frequency_unit = models.CharField(default="hour", max_length=10)
+
+
+class ReminderTime(models.Model):
+    #derived from start_date + user input in form for list of times
+    time_to_take = models.DateTimeField('date to take medication')
+    appointment = models.ForeignKey(Appointment)
 
 
 class Medication(models.Model):
