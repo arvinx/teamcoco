@@ -1,7 +1,7 @@
 from django.conf import settings
 
 import twilio
-import twilio.rest
+from twilio.rest import TwilioRestClient
 import datetime
 from django.http import Http404
 from django.shortcuts import get_object_or_404, render
@@ -12,7 +12,7 @@ import django
 
 from forms import SeniorForm, MedicationForm, AppointmentForm
 
-from remindr.models import Senior, Appointment, Medication, ReminderTime
+from remindr.models import Senior, Appointment, Medication, ReminderTime, Dosage
 
 
 def senior_index(request):
@@ -43,9 +43,16 @@ def add_senior(request):
             name = form.cleaned_data['name']
             phone_number = form.cleaned_data['phone_number']
             senior = Senior(name=name, phone_number=phone_number)
-            print "here"
-
             senior.save()
+
+            client = TwilioRestClient(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN)
+
+            # Make the call
+            client.messages.create(
+                body="Welcome to Med-member, %s! - Team CoCo" % name,
+                to=senior.phone_number,
+                from_=settings.TWILIO_PHONE_NUMBER)
+
             return HttpResponseRedirect('/remindr/')
 
 def add_medication(request, senior_id = None):
@@ -73,6 +80,12 @@ def add_appointment(request, senior_id=None):
             newAppointment = Appointment(message=message, senior=senior, start_date=start_date, end_date=end_date,
                                          frequency_unit=frequency_unit)
             newAppointment.save()
+
+
+            for medication in form.cleaned_data['medications']:
+                newDosage = Dosage(appointment=newAppointment, medication=medication)
+                newDosage.save()
+
             curr_date = start_date
             time_to_take = form.cleaned_data['time_to_take']
 

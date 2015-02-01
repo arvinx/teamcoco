@@ -14,6 +14,9 @@ body .row {
 	max-width: 100%;
 }
 
+#container {
+	margin: 2% 2%;
+}
 .vertical-nav {
 	/*width: 100%;*/
 }
@@ -30,15 +33,17 @@ body .row {
 	margin-left:auto;
 	margin-right:auto;
 	box-shadow: 0px 1px 1px rgba(0,0,0,0.7);
+	cursor: pointer;
 }
 
 .contactItem:not(.nohover):hover {
 	background-color: #9DE5D2;
 	box-shadow: 0px -1px 1px rgba(0,0,0,0.7);
 }
-.contactItem .valign:before {
+.killHeight.valign:before {
 	height: 0px;
 }
+
 .contactPhoto {
 	background-color: #289CC7;
 	background: #289CC7 url('../img/gumby_mainlogo.png') center center no-repeat;
@@ -58,9 +63,47 @@ body .row {
 	text-align: center;
 }
 
-.contactHero .contactPhoto {
+.contactPhoto.hero {
 	width: 100px;
 	height: 100px;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+#profileView {
+	position: relative;
+		width: 100%;
+	min-height: 600px;
+	box-shadow: 0px 1px 1px rgba(0,0,0,0.7);
+}
+
+#profileBanner {
+	position: absolute;
+	height: 33%;
+	width: 100%;
+}
+
+#profileBanner #profileHeader {
+	position: relative;
+	height: 75%;
+	background-color: #CBCBCB;
+	padding: 2% 2%;
+}
+
+#profileBanner #profileNavbar {
+	position: relative;
+	height: 25%;
+	background-color: #F00;
+	padding: 0 2%;
+	padding-top: 1%;
+}
+
+/* Responsive */
+@media screen and (max-width:768px) {
+	#contactMenu {
+		max-width: 100%;
+	}
+	#contactList {
+		display: none;
+	}
 }
