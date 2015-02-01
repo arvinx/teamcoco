@@ -31,12 +31,12 @@
 <body>
 	<div id="container">
 	<div class="row">
-		<div class="four columns" id="contactMenu">
+		<div class="two columns" id="contactMenu">
 			<nav class="vertical-nav">
 				<div class="contactHero">
 					<div class="contactItem nohover">
 						<div class="contactPhoto hero"></div>
-						<h2>Sidebar Hero</h2>
+						<h2>Sidebar</h2>
 					</div>
 				</div>
 				<ul id="contactList">
@@ -94,7 +94,7 @@
 			</nav>
 		</div>
 
-		<div class="eight columns">
+		<div class="ten columns">
 			<div id="profileView">
 				<div id="profileBanner">
 					<div id="profileHeader">
@@ -114,15 +114,32 @@
 						</div>
 					</div>
 					<div id="profileNavbar">
-						<div class="row navbar" id="profileNav">
+						<nav class="row navbar" id="profileNav">
 							<ul class="twelve columns">
-								<li><a href="#">Info</a></li>
-								<li><a href="#">History</a></li>
-								<li><a href="#">Appointments</a></li>
-								<li><a href="#">Medication</a></li>
-								<li><a href="#">Notes</a></li>
+								<li class="active"><a href="#" onclick="showProfilePanel(event, '#profileInfo')">Info</a></li>
+								<!-- <li><a href="#" onclick="showProfilePanel(event, '#profileHistory')">History</a></li> -->
+								<li><a href="#" onclick="showProfilePanel(event, '#profileAppt')">Appointments</a></li>
+								<li><a href="#" onclick="showProfilePanel(event, '#profileMeds')">Medication</a></li>
+								<li><a href="#" onclick="showProfilePanel(event, '#profileNotes')">Notes</a></li>
 							</ul>
-						</div>
+						</nav>
+					</div>
+				</div>
+				<div id="profileContent">
+					<div class="profilePanel active" id="profileInfo">
+						Info
+					</div>
+<!-- 					<div class="profilePanel" id="profileHistory">
+						History
+					</div> -->
+					<div class="profilePanel" id="profileAppt">
+						Appointment
+					</div>
+					<div class="profilePanel" id="profileMeds">
+						Medication
+					</div>
+					<div class="profilePanel" id="profileNotes">
+						Notes
 					</div>
 				</div>
 			</div>
@@ -157,6 +174,7 @@
 	Include gumby.js followed by UI modules followed by gumby.init.js
 	Or concatenate and minify into a single file -->
 	<script gumby-touch="js/libs" src="js/libs/gumby.min.js"></script>
+	<script src="js/profile.js"></script>
 <!-- 	// <script src="js/libs/ui/gumby.retina.js"></script>
 	// <script src="js/libs/ui/gumby.fixed.js"></script>
 	// <script src="js/libs/ui/gumby.skiplink.js"></script>
