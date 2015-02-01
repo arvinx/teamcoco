@@ -94,9 +94,12 @@
 							<div class="listContainer" id="scheduleList">
 							<ul class="listGroup">
                                 {% for reminder in reminder_lst %}
-								<li class="{{reminder.appointment.senior.id}}">
+								<li class="{{reminder.appointment.senior.id}} reminderList">
 									<div class="itemDetail">
                                         {{ reminder.appointment.message }}
+									</div>
+									<div class="itemInfo switch" id="{{ reminder.id }}" gumby-trigger="#reminderDetails">
+										<a href="#">Details</a>
 									</div>
 									<!-- ADDED DELETE. BUGGY. DUSTIN FIX -->
 									<div class="itemDelete">
@@ -293,15 +296,51 @@
 	  </div>
 	</div>
 
-	<template id="listItem">
-		<li>
+	<div class="modal" id="reminderDetails">
+	  <div class="content">
+	    <a class="close switch" gumby-trigger="|#reminderDetails">x</a>
+	    <div class="row">
+	      <div class="ten columns centered text-center">
+	      	<ul id="drugList">
+	      	</ul>
+		  </div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<template id="apptItem">
+		<li class="reminderList">
 			<div class="itemDetail">
+			</div>
+			<div class="itemInfo switch" gumby-trigger="#reminderDetails">
+				<a href="#">Details</a>
 			</div>
 			<div class="itemDelete">
 			</div>
 			<div class="itemTime info badge">
 			</div>
 		</li>
+	</template>
+
+	<template id="listItem">
+		<li>
+			<div class="itemDetail">
+			</div>
+			<div class="itemTime info badge">
+			</div>
+		</li>
+	</template>
+
+	<template id="reminderDetailListItem">
+		<li>
+			<div class="drugName">
+			</div>
+			<div class="drugDosage">
+			</div>
+			<div class="drugAmount">
+			</div>
+		</li> 
 	</template>
 	<!-- Grab Google CDN's jQuery, fall back to local if offline -->
 	<!-- 2.0 for modern browsers, 1.10 for .oldie -->
@@ -357,6 +396,23 @@
         		},
         		error: function(e){
         			console.log(e);
+        		}
+        	});
+        }
+
+        function populateReminderMedDetails(reminderId){
+        	$.ajax({
+        		type: 'GET',
+        		url: "{% url 'remindr:get_reminder_details' %}",
+        		data: {
+        			'reminder_id' : reminderId
+        		},
+        		success : function(result){
+        			var reminderDetailsArray = result['Result'];
+        			populateReminderDetails(reminderDetailsArray);
+        		},
+        		error: function(e){
+        			console.log(e)
         		}
         	});
         }

@@ -1,5 +1,5 @@
 from django.conf import settings
-
+import json
 import twilio
 from twilio.rest import TwilioRestClient
 import datetime
@@ -149,6 +149,19 @@ def getMedication(request):
         serialized = serializers.serialize('json', medications, use_natural_keys=True)
         jsonResult = "{ \"Result\":" + serialized + "}"
         return HttpResponse(jsonResult, content_type="application/json")
+
+def getReminderDetails(request):
+    if request.method == 'GET':
+        reminder = get_object_or_404(ReminderTime, pk=request.GET.get('reminder_id', ''))
+        appointment = reminder.appointment
+        dosages = appointment.dosage_set.all()
+        resultMedications = []
+        for dosage in dosages:
+            resultMedications.append(dosage.medication)
+        serialized = serializers.serialize('json', resultMedications, use_natural_keys=True)
+        jsonResult = "{ \"Result\":" + serialized + "}"
+        return HttpResponse(jsonResult, content_type='application/json')
+
 
 def deleteReminder(request, reminder_id=None):
     reminder = get_object_or_404(ReminderTime, pk=reminder_id)

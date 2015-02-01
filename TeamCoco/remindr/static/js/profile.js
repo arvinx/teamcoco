@@ -36,14 +36,16 @@ function populateAppointments(jsonArray) {
 	clearAppointments();
 	var appointmentList = $('#profileAppt #scheduleList .listGroup');
 	for(i = 0; i < jsonArray.length; i++) {
-		var templateBlock = $($('template#listItem').html());
+		var templateBlock = $($('template#apptItem').html());
 		templateBlock.find('.itemDetail').html(jsonArray[i].fields.appointment);
+		templateBlock.find('.itemInfo').attr('id', jsonArray[i].pk);
 		templateBlock.find('.itemDelete').html("<a href=\"/remindr/reminder/" + jsonArray[i].pk + "/delete\">Delete</a>")
 		var date = dateToString(jsonArray[i].fields.time_to_take);
 		templateBlock.find('.itemTime').html(date);
 		appointmentList.append(templateBlock);
 
 	}
+	initializeListModalButtons();
 }
 
 function populateMedication(jsonArray) {
@@ -55,6 +57,18 @@ function populateMedication(jsonArray) {
 		templateBlock.find('.itemTime').html(jsonArray[i].fields.dosage_amount + " " +jsonArray[i].fields.dosage_unit);
 		medicationList.append(templateBlock);
 	}	
+}
+
+function populateReminderDetails(jsonArray){
+	var drugList = $('#drugList');
+	drugList.html('');
+	for (i = 0; i < jsonArray.length; i++){
+		var templateBlock = $($('template#reminderDetailListItem').html());
+		templateBlock.find('.drugName').html(jsonArray[i].fields.name);
+		templateBlock.find('.drugDosage').html(jsonArray[i].fields.dosage_amount);
+		templateBlock.find('.drugAmount').html(jsonArray[i].fields.dosage_unit);
+		drugList.append(templateBlock);
+	}
 }
 
 function clearAppointments() {
@@ -81,6 +95,15 @@ function dateToString(dateStr) {
 }
 
 
+function initializeListModalButtons() {
+	$('li.reminderList .itemInfo').on('click', function(e){
+		e.preventDefault();
+		var reminder_id = e.currentTarget.id;
+		populateReminderMedDetails(reminder_id);
+		Gumby.initialize('switches');
+	});
+}
+
 $(document).ready(function(){
 	$('li.contactListItem:not(:last-child)').on('click', function(e){
 		e.preventDefault();
@@ -90,6 +113,8 @@ $(document).ready(function(){
 		populateProfile(e.currentTarget);
 		formActionCorrection(senior_id);
 	});
+
+	initializeListModalButtons();
 
 	$('#id_recurring').on('change', function() {
 		if(this.checked) {

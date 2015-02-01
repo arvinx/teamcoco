@@ -249,6 +249,11 @@ body .row {
 	pointer-events: none !important;
 }
 
+li.reminderList .itemInfo a {
+	color: #2FB32B;
+	cursor: pointer;
+}
+
 /* Responsive */
 @media screen and (max-width:768px) {
 	#contactMenu {
