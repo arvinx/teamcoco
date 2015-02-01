@@ -123,7 +123,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
+    # 'django.contrib.admindocs', 
     'remindr',
     'django_twilio',
 )
@@ -134,6 +134,11 @@ TWILIO_AUTH_TOKEN = 'ed5e57bb21d95457794e24cbfd49543c'
 TWILIO_PHONE_NUMBER = '6476910614'
 #TWILIO_DEFAULT_CALLERID = 'TEAM_COCO'
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
+
+
+# STATIC FILES
+STATIC_URL = '/static/'
+
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
