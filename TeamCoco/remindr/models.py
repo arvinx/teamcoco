@@ -16,18 +16,21 @@ class Appointment(models.Model):
     # when the repeat starts
     start_date = models.DateField(auto_now=True)
     # when the repeat ends? can it be null?
-    end_date = models.DateField(auto_now=False)
+    end_date = models.DateField(auto_now=False, null=True)
     #freq evenly spread out on freq_unit
     frequency_unit = models.CharField(default="hour", max_length=10)
 
     def __str__(self):
         return self.message
 
+    def natural_key(self):
+        return (self.message)
 
 class ReminderTime(models.Model):
     #derived from start_date + user input in form for list of times
     time_to_take = models.DateTimeField('date to take medication')
     appointment = models.ForeignKey(Appointment)
+    method = models.CharField(max_length=5, default="phone")
 
     def __str__(self):
         return str(self.time_to_take)
