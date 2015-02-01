@@ -149,11 +149,11 @@ body .row {
 }
 .profilePanel .listContainer {
 	max-width: 100% !important;
-	height: 350px;
+	height: 450px;
 	border: 1px solid;
+    border-color: #cecece;
 	border-radius: 10px;
 	padding: 2% 2%;
-	box-shadow: 0px 2px 1px rgba(0,0,0,0.25) inset;
 }
 
 .profilePanel .listContainer:not(#scheduleList) {
@@ -193,7 +193,7 @@ body .row {
 
 .listContainer form {
 	overflow-y: auto;
-	height: 315px;
+	height: 400px;
 	padding-top: 0.5em;
 }
 
