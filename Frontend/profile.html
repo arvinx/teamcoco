@@ -116,9 +116,9 @@
 					<div id="profileNavbar">
 						<nav class="row navbar" id="profileNav">
 							<ul class="twelve columns">
-								<li class="active"><a href="#" onclick="showProfilePanel(event, '#profileInfo')">Info</a></li>
+								<li><a href="#" onclick="showProfilePanel(event, '#profileInfo')">Info</a></li>
 								<!-- <li><a href="#" onclick="showProfilePanel(event, '#profileHistory')">History</a></li> -->
-								<li><a href="#" onclick="showProfilePanel(event, '#profileAppt')">Appointments</a></li>
+								<li class="active"><a href="#" onclick="showProfilePanel(event, '#profileAppt')">Appointments</a></li>
 								<li><a href="#" onclick="showProfilePanel(event, '#profileMeds')">Medication</a></li>
 								<li><a href="#" onclick="showProfilePanel(event, '#profileNotes')">Notes</a></li>
 							</ul>
@@ -126,14 +126,122 @@
 					</div>
 				</div>
 				<div id="profileContent">
-					<div class="profilePanel active" id="profileInfo">
+					<div class="profilePanel" id="profileInfo">
 						Info
 					</div>
 <!-- 					<div class="profilePanel" id="profileHistory">
 						History
 					</div> -->
-					<div class="profilePanel" id="profileAppt">
-						Appointment
+					<div class="profilePanel active" id="profileAppt">
+						<div class="row">
+						<div class="eight columns">
+							<div class="listHeading">
+								<h4>Schedule</h4>
+							</div>
+							<div class="listContainer" id="scheduleList">
+							<ul class="listGroup">
+								<li>
+									<div class="itemDetail">
+										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque in justo augue. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+									</div>
+									<div class="itemTime info badge">
+										Jan. 31 7:45PM
+									</div>
+								</li>
+								<li>
+									<div class="itemDetail">
+										Lorem Ipsum
+									</div>
+									<div class="itemTime info badge">
+										Jan. 31 7:45PM
+									</div>
+								</li>
+								<li>
+									<div class="itemDetail">
+										Lorem Ipsum
+									</div>
+									<div class="itemTime info badge">
+										Jan. 31 7:45PM
+									</div>
+								</li>
+								<li>
+									<div class="itemDetail">
+										Lorem Ipsum
+									</div>
+									<div class="itemTime info badge">
+										Jan. 31 7:45PM
+									</div>
+								</li>
+								<li>
+									<div class="itemDetail">
+										Lorem Ipsum
+									</div>
+									<div class="itemTime info badge">
+										Jan. 31 7:45PM
+									</div>
+								</li>
+								<li>
+									<div class="itemDetail">
+										Lorem Ipsum
+									</div>
+									<div class="itemTime info badge">
+										Jan. 31 7:45PM
+									</div>
+								</li>
+								<li>
+									<div class="itemDetail">
+										Lorem Ipsum
+									</div>
+									<div class="itemTime info badge">
+										Jan. 31 7:45PM
+									</div>
+								</li>
+								<li>
+									<div class="itemDetail">
+										Lorem Ipsum
+									</div>
+									<div class="itemTime info badge">
+										Jan. 31 7:45PM
+									</div>
+								</li>
+								<li>
+									<div class="itemDetail">
+										Lorem Ipsum
+									</div>
+									<div class="itemTime info badge">
+										Jan. 31 7:45PM
+									</div>
+								</li>
+								<li>
+									<div class="itemDetail">
+										Lorem Ipsum
+									</div>
+									<div class="itemTime info badge">
+										Jan. 31 7:45PM
+									</div>
+								</li>
+							</ul>
+							</div>
+						</div>
+						<div class="four columns">
+							<div class="listHeading">
+								<h4>To-Do's</h4>
+							</div>
+							<div class="listContainer" style="height:244px;"> <!--HEIGHT IS TEMP -->
+								FORM FOR ADDING GOES HERE
+
+								<div class="medium default btn">
+									<input type="submit" value="Submit" />
+								</div> 
+							</div>
+							<div class="listHeading">
+								<h4>Miscellaneous Form Container</h4>
+							</div>
+							<div class="listContainer">
+								If we have room for things
+							</div>
+						</div>
+						</div> <!--row-->
 					</div>
 					<div class="profilePanel" id="profileMeds">
 						Medication
