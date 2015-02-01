@@ -14,11 +14,10 @@ class Command(BaseCommand):
         for reminder in reminders:
             #time to send twilio request
             slow_msg = ". ".join(reminder.appointment.message.split())
-            params = urllib.urlencode({'Message[0]': slow_msg})
-            twimlets_url = urllib.urlopen("http://twimlets.com/message?%s" % params).url
-            print twimlets_url
-            # Download the library from twilio.com/docs/libraries
-
+            menu_msg = ". Please press 1 to call to Nathan if you need help taking your medication"
+            slow_msg += menu_msg
+            params = urllib.urlencode({'Message': slow_msg, "Options[1]": "http://twimlets.com/forward?PhoneNumber=6473399467" })
+            twimlets_url = urllib.urlopen("http://twimlets.com/menu?%s" % params).url
 
             client = TwilioRestClient(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN)
 

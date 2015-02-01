@@ -3,12 +3,8 @@ from django.conf import settings
 import twilio
 from twilio.rest import TwilioRestClient
 import datetime
-from django.http import Http404
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect, HttpResponse
-from django.template import RequestContext, loader
-from django.core.urlresolvers import reverse
-import django
 
 from forms import SeniorForm, MedicationForm, AppointmentForm
 
