@@ -254,6 +254,14 @@ li.reminderList .itemInfo a {
 	cursor: pointer;
 }
 
+#reminderDetails h2 {
+	padding-bottom: 0;
+}
+
+#reminderDetails h3 {
+	padding-bottom: 0.4em;
+}
+
 /* Responsive */
 @media screen and (max-width:768px) {
 	#contactMenu {

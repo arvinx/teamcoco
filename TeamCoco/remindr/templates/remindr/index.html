@@ -101,11 +101,9 @@
 									<div class="itemInfo switch" id="{{ reminder.id }}" gumby-trigger="#reminderDetails">
 										<a href="#">Details</a>
 									</div>
-									<!-- ADDED DELETE. BUGGY. DUSTIN FIX -->
 									<div class="itemDelete">
 										<a href="{% url 'remindr:delete_reminder' reminder.id %}">Delete</a>
 									</div>
-									<!-- ################################ -->
 									<div class="itemTime info badge">
 										{{ reminder.time_to_take }}
 									</div>
@@ -300,9 +298,11 @@
 	  <div class="content">
 	    <a class="close switch" gumby-trigger="|#reminderDetails">x</a>
 	    <div class="row">
-	      <div class="ten columns centered text-center">
-	      	<ul id="drugList">
-	      	</ul>
+	      <div class="ten columns">
+	      	<h2></h2>
+	      	<h3>Medication:</h3>
+	      	<ol id="drugList">
+	      	</ol>
 		  </div>
 	      </div>
 	    </div>
@@ -400,7 +400,7 @@
         	});
         }
 
-        function populateReminderMedDetails(reminderId){
+        function populateReminderMedDetails(reminderId, eventTarget){
         	$.ajax({
         		type: 'GET',
         		url: "{% url 'remindr:get_reminder_details' %}",
@@ -409,7 +409,7 @@
         		},
         		success : function(result){
         			var reminderDetailsArray = result['Result'];
-        			populateReminderDetails(reminderDetailsArray);
+        			populateReminderDetails(reminderDetailsArray, eventTarget);
         		},
         		error: function(e){
         			console.log(e)

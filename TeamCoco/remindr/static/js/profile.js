@@ -59,15 +59,25 @@ function populateMedication(jsonArray) {
 	}	
 }
 
-function populateReminderDetails(jsonArray){
+function populateReminderDetails(jsonArray, eventTarget){
 	var drugList = $('#drugList');
+	var contentWindow = $('#drugList').parent();
 	drugList.html('');
+	var title = eventTarget.find('.itemDetail').html().trim();
+	contentWindow.find('h2').html(title);
+	if (jsonArray.length > 1) {
+		contentWindow.find('h3').html('Medications:');
+	} else {
+		contentWindow.find('h3').html('Medication:');
+	}
 	for (i = 0; i < jsonArray.length; i++){
 		var templateBlock = $($('template#reminderDetailListItem').html());
-		templateBlock.find('.drugName').html(jsonArray[i].fields.name);
-		templateBlock.find('.drugDosage').html(jsonArray[i].fields.dosage_amount);
-		templateBlock.find('.drugAmount').html(jsonArray[i].fields.dosage_unit);
-		drugList.append(templateBlock);
+		var string = jsonArray[i].fields.name + ": " + jsonArray[i].fields.dosage_amount + jsonArray[i].fields.dosage_unit;
+		var liItem = $(document.createElement('li')).html(string);
+		// templateBlock.find('.drugName').html(jsonArray[i].fields.name);
+		// templateBlock.find('.drugDosage').html(jsonArray[i].fields.dosage_amount);
+		// templateBlock.find('.drugAmount').html(jsonArray[i].fields.dosage_unit);
+		drugList.append(liItem);
 	}
 }
 
@@ -99,7 +109,8 @@ function initializeListModalButtons() {
 	$('li.reminderList .itemInfo').on('click', function(e){
 		e.preventDefault();
 		var reminder_id = e.currentTarget.id;
-		populateReminderMedDetails(reminder_id);
+		var bulletItem = $(e.currentTarget.parentElement);
+		populateReminderMedDetails(reminder_id, bulletItem);
 		Gumby.initialize('switches');
 	});
 }
