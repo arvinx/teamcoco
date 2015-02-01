@@ -3,6 +3,10 @@ We highly recommend you use SASS and write your custom styles in sass/_custom.sc
 However, this blank file is available if you prefer
 */
 
+body {
+	/*background-color: #24E4DF;*/
+}
+
 #container {
 	margin: 15px 15px;
 }
@@ -113,6 +117,58 @@ body .row {
 
 .navbar ul li:hover > a {
 	box-shadow: 2px 2px 1px rgba(0,0,0,0.3) inset, -2px 0px 1px rgba(0,0,0,0.3) inset;
+}
+
+.profilePanel .listHeading h4 {
+	font-weight: 600;
+	font-size: 1.15em;
+	margin-bottom: 0.5em;
+}
+.profilePanel .listContainer {
+	max-width: 100% !important;
+	max-height: 350px;
+	border: 1px solid;
+	border-radius: 10px;
+	padding: 2% 2%;
+	box-shadow: 0px 2px 1px rgba(0,0,0,0.25) inset;
+}
+
+.profilePanel .listContainer:not(#scheduleList) {
+	margin-bottom: 6%;
+}
+
+.listContainer .listGroup {
+	margin: 1%;
+	max-height: 325px;
+	overflow-y: auto;
+}
+.listContainer .listGroup li {
+	min-height: 35px;
+	background-color: #12F6CD;
+	margin-bottom: 0.5em;
+	padding: 1% 1%;
+}
+
+.listContainer .listGroup li:nth-child(odd) {
+	background-color: #fff;
+}	
+
+.listContainer .listGroup li > div {
+	display: inline-block;
+}
+
+.listContainer .listGroup li > div.itemTime {
+	float: right;
+	clear: both;
+	right: 0;
+}
+
+.listContainer .listGroup li > div.itemDetail {
+	display: inline-block;
+	width: 70%;
+}
+.listForm {
+	display: none;
 }
 
 /* Responsive */
